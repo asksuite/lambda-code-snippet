@@ -1,0 +1,15 @@
+service: asksuite-lambda-function
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+
+functions:
+  executor:
+    handler: src/executor/handler.handler
+    memorySize: 256
+    timeout: 120
+package:
+  exclude:
+    - node_modules/puppeteer/.local-chromium/** # exclude puppeteer chrome if exists
+    - node_modules/**/chrome-aws-lambda/**

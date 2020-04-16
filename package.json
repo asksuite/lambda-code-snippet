@@ -1,0 +1,40 @@
+{
+  "name": "asksuite-lambda-function",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --verbose",
+    "eslint": "eslint . --ext .js  --fix ",
+    "deploy": "serverless deploy -v",
+    "serverless": "serverless invoke local --function",
+    "serverless-offline": "nodemon --exec \"serverless offline --host 0.0.0.0\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "bluebird": "^3.7.2",
+    "lodash": "^4.17.15"
+  },
+  "devDependencies": {
+    "eslint": "6.1.0",
+    "eslint-config-asksuite": "^1.1.2",
+    "eslint-config-prettier": "^6.5.0",
+    "eslint-plugin-jest": "^22.14.1",
+    "eslint-plugin-prettier": "^3.1.1",
+    "husky": "^3.0.9",
+    "jest": "^24.7.1",
+    "nodemon": "^2.0.2",
+    "prettier": "^2.0.4",
+    "serverless": "1.49.0",
+    "serverless-offline": "5.10.1",
+    "serverless-prune-plugin": "1.4.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run eslint && npm run test"
+    }
+  }
+}
