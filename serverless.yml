@@ -5,9 +5,29 @@ provider:
   runtime: nodejs10.x
 
 functions:
-  executor:
+  executor_128:
+    handler: src/executor/handler.handler
+    memorySize: 128
+    timeout: 120
+  executor_256:
     handler: src/executor/handler.handler
     memorySize: 256
+    timeout: 120
+  executor_512:
+    handler: src/executor/handler.handler
+    memorySize: 512
+    timeout: 120
+  executor_768:
+    handler: src/executor/handler.handler
+    memorySize: 768
+    timeout: 120
+  executor_1024:
+    handler: src/executor/handler.handler
+    memorySize: 1024
+    timeout: 120
+  executor_1280:
+    handler: src/executor/handler.handler
+    memorySize: 1280
     timeout: 120
 package:
   exclude:
