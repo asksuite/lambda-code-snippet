@@ -1,9 +1,9 @@
+const context = require('./context');
+
 async function run(parameters, functionCode) {
   const mappedFunction = mountFunction(functionCode);
 
   console.log('mappedFunction', mappedFunction);
-
-  const context = generateContext();
 
   try {
     const func = new Function(mappedFunction);
@@ -31,10 +31,6 @@ function handleError(error) {
   }
 
   return error;
-}
-
-function generateContext() {
-  return {};
 }
 
 function mountFunction(functionCode) {

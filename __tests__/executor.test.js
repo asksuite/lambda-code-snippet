@@ -18,8 +18,8 @@ describe('Executor test', () => {
         test2: 10,
       },
       functionCode: `
-                return parameters.test + parameters.test2;
-            `,
+          return parameters.test + parameters.test2;
+      `,
     });
 
     expect(result).toEqual(
@@ -62,11 +62,11 @@ describe('Executor test', () => {
         array: [1, 2, 3],
       },
       functionCode: `
-                return _.chain(parameters.array)
-                    .map((i) => i * i)
-                    .sum()
-                    .value();
-            `,
+          return _.chain(parameters.array)
+              .map((i) => i * i)
+              .sum()
+              .value();
+      `,
     });
 
     expect(result).toEqual(
@@ -84,13 +84,13 @@ describe('Executor test', () => {
         array: [1, 2, 3],
       },
       functionCode: `
-                const _ = require('lodash');
-            
-                return _.chain(parameters.array)
-                    .map((i) => i * i)
-                    .sum()
-                    .value();
-            `,
+          const _ = require('lodash');
+      
+          return _.chain(parameters.array)
+              .map((i) => i * i)
+              .sum()
+              .value();
+      `,
     });
 
     expect(result).toEqual(
@@ -106,17 +106,16 @@ describe('Executor test', () => {
         array: [5, 3, 2],
       },
       functionCode: `
-            
-                const PromiseBlue = require('bluebird');
-                
-                const result = await PromiseBlue.map(
-                    parameters.array,
-                    item => Math.pow(item, item),
-                    {concurrency: 1},
-                );
+          const PromiseBlue = require('bluebird');
+          
+          const result = await PromiseBlue.map(
+              parameters.array,
+              item => Math.pow(item, item),
+              {concurrency: 1},
+          );
 
-                return result;
-            `,
+          return result;
+      `,
     });
 
     expect(result).toEqual(
@@ -132,10 +131,10 @@ describe('Executor test', () => {
         companyId: 'asksuite',
       },
       functionCode: `
-                return {
-                    "companyId": parameters.companyId;
-                };
-            `,
+          return {
+              "companyId": parameters.companyId;
+          };
+      `,
     });
 
     expect(result).toEqual(
@@ -153,13 +152,13 @@ describe('Executor test', () => {
         companyId: 'asksuite',
       },
       functionCode: `
-                return Promise.reject({
-                    "customError": {
-                        "companyId": parameters.companyId,
-                        "message": "Company don't exists",                    
-                    },
-                });
-            `,
+          return Promise.reject({
+              "customError": {
+                  "companyId": parameters.companyId,
+                  "message": "Company don't exists",                    
+              },
+          });
+      `,
     });
 
     expect(result).toEqual(
@@ -170,6 +169,21 @@ describe('Executor test', () => {
             message: "Company don't exists",
           },
         },
+      }),
+    );
+  });
+
+  it('test function 8 - context - translate', async () => {
+    const result = await handler({
+      parameters: {},
+      functionCode: `
+          return context.translateText('Hi', 'en', 'pt_br');
+      `,
+    });
+
+    expect(result).toEqual(
+      mountSuccessResult({
+        data: 'Oi',
       }),
     );
   });
