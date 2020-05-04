@@ -4,7 +4,7 @@ const config = require('../../config');
 function translateText(text, from, to) {
   return axios({
     method: 'POST',
-    url: `${config.CONTROL_URL}/api/directTranslation`,
+    url: `${config.CONTROL_URL}/api/v2/directTranslation`,
     data: { text, to, from },
   }).then((response) => response.data.result);
 }
