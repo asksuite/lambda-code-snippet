@@ -16,6 +16,7 @@
   "dependencies": {
     "axios": "^0.19.2",
     "bluebird": "^3.7.2",
+    "json-web-crawler": "^0.8.1",
     "lodash": "^4.17.15"
   },
   "devDependencies": {
