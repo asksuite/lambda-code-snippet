@@ -10,7 +10,7 @@ pipelines:
           script:
             - npm install --no-package-lock
             - cp .env.example .env
-            - sed -i 's/API_KEY_GOOGLE_TRANSLATE=/API_KEY_GOOGLE_TRANSLATE=$API_KEY_GOOGLE_TRANSLATE/g' .env
+            - sed -i "s/API_KEY_GOOGLE_TRANSLATE=/API_KEY_GOOGLE_TRANSLATE=$API_KEY_GOOGLE_TRANSLATE/g" .env
             - cat .env
             - npm run test
             - npm run deploy
