@@ -3,7 +3,8 @@ service: asksuite-lambda-function
 provider:
   name: aws
   runtime: nodejs10.x
-
+  environment:
+    API_KEY_GOOGLE_TRANSLATE: ${file(../config.js):API_KEY_GOOGLE_TRANSLATE}
 functions:
   executor_128:
     handler: src/executor/handler.handler

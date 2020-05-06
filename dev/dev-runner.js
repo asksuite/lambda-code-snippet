@@ -1,9 +1,8 @@
-const { handler } = require('../executor/handler');
+const { handler } = require('src/executor/handler');
 const fs = require('fs');
 
-async function run(){
-
-  var text = fs.readFileSync('dev-function.js','utf8');
+async function run() {
+  const text = fs.readFileSync('dev-function.js', 'utf8');
 
   const result = await handler({
     parameters: {
@@ -12,8 +11,7 @@ async function run(){
     functionCode: text,
   });
 
-  // console.log("result", text);
+  console.log('result', result);
 }
-
 
 run();

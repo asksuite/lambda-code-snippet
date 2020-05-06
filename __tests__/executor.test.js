@@ -1,3 +1,4 @@
+require('dotenv').config();
 const { handler } = require('../src/executor/handler');
 
 const mountSuccessResult = (data) => ({
@@ -177,7 +178,7 @@ describe('Executor test', () => {
     const result = await handler({
       parameters: {},
       functionCode: `
-          return context.translateText('Hi', 'en', 'pt_br');
+          return context.translateText('Hi', 'en-us', 'pt-br');
       `,
     });
 

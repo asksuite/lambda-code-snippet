@@ -4,8 +4,7 @@ const axios = require('axios');
 return axios({
   method: 'get',
   url: parameters.url,
-}).then(function(response) {
-
+}).then(function (response) {
   return crawl(response.data, {
     container: '.cards .card',
     type: 'list',
@@ -34,10 +33,8 @@ return axios({
         get: 'src',
         elem: 'img',
       },
-
     },
-  }).then(item => {
+  }).then((item) => {
     return item;
   });
-
 });
