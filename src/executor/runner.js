@@ -1,4 +1,4 @@
-const context = require('./context');
+const context = require('../context/index');
 
 async function run(parameters, functionCode) {
   const mappedFunction = mountFunction(functionCode);

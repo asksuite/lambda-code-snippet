@@ -1,4 +1,4 @@
-const { handler } = require('src/executor/handler');
+const { handler } = require('../src/executor/handler');
 const fs = require('fs');
 
 async function run() {
