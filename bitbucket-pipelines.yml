@@ -40,4 +40,4 @@ pipelines:
             - git remote add origin_github $GITHUB_REMOTE_REPO_URL
             - git add .
             - git commit -m "$COMMIT_MESSAGE"
-            - git push  -u origin_github master # Set upstream
+            - git push -u --force origin_github master # Set upstream
