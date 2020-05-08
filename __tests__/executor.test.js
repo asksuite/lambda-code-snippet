@@ -186,4 +186,15 @@ describe('Executor test', () => {
       }),
     );
   });
+
+  it('test function 9 - context - invalid translate', async () => {
+    const result = await handler({
+      parameters: {},
+      functionCode: `
+          return context.translateText('Hi', 'ping', 'pong');
+      `,
+    });
+
+    expect(JSON.parse(result.body).error).not.toBeNull();
+  });
 });

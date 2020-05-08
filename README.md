@@ -3,7 +3,7 @@
   
 ## What is it?
 
-Esse projeto é usado para fornecer uma base de funções [Lambda AWS](https://aws.amazon.com/pt/lambda/) nas quais possibilitam a execução de um trecho de código **(Node.js 10.x)** genérico e isolado.
+This project is used to provide a base of functions in [Lambda AWS](https://aws.amazon.com/pt/lambda/) which it is possible to execute a generic, scalable and isolated piece of code **(Node.js 10.x)**.
 
 ## Setup  
   
@@ -19,12 +19,18 @@ or
 ```bat  
 npm run lint:fix  
 ```  
+
+Executing tests  
+```bat  
+npm run test
+```  
   
 ## Deploy  
-Necessário ter configurado as seguintes variáveis de ambiente:
+It's necessary to have configured the following environment variables:
+*You can configure these variables via the .env file*
  - **AWS_ACCESS_KEY_ID**
  - **AWS_SECRET_ACCESS_KEY**
-  
+
  ```bat  
 npm run deploy
 ```  
@@ -40,31 +46,33 @@ Após realizar o deploy, você irá possuir as seguintes funções:
 
 ## API
 
-| Field | Description |
-|-- | -- |
-| functionCode | body of function to execute |
-| parameters | any data to use in function |
+| Field | Type of Data | Description |
+|-- | -- | -- |
+| functionCode | string | body of function to execute |
+| parameters | object or array | any data to use in function |
 
 ## Usage
 
-Todas as funções possuem os mesmos parâmetros mas cada uma possui sua particularidade em memória reservada. 
-Por exemplo: _lambda-code-snippet-executor_128_ possui 128MB de RAM. 
-
+All functions have the same entry parameters, but each has its particularity in reserved memory.
+Example: _lambda-code-snippet-executor_128_ has 128MB of RAM. 
 
 ### Description of *functionCode*
 
-o **functionCode** é encapsulado na seguinte função:
+**functionCode** is encapsulated and You can use any argument available in the function.
+
 ```
 async function (parameters, context, require) {
     ${functionCode}
 };
 ```
 
+### Description of *parameters*
+
+It is the value sent by **event** to be made available when executing the function.
+
 ### Description of *context*
 
-É um objeto que disponibiliza algumas funções úteis e recorrentes das funções. 
-
-Atualmente é:
+It is an object that has some useful functions. See the **context** structure below:
 
 ```
 {
@@ -73,9 +81,8 @@ Atualmente é:
 ```
 
 ### Description of *require*
-require nativo do Node.Js. Possibilita importar qualquer biblioteca instalada no projeto.
 
-**Available packages:**
+Native require of Node.Js. It makes it possible to import any package installed in the project. **See below available packages:**
 
 | package | version |
 | -- | -- |
@@ -114,9 +121,9 @@ const result = await lambda
 ```
 Expected value of *result* is: ``{ "data": 15 }`` 
 
-
 #### #2 Example of use translateText
-Require set env API_KEY_GOOGLE_TRANSLATE
+Required env API_KEY_GOOGLE_TRANSLATE
+
 ```javascript
 const event = {
     parameters: {
@@ -128,23 +135,20 @@ const event = {
          return context.translateText(parameters.phrase, parameters.from, parameters.to);
     `,
 };
-
 ```
 Expected value of *result* is: ``{ "data": "Oi" }`` 
 
 #### #3 Example of require 
-Require set env API_KEY_GOOGLE_TRANSLATE
+
 ```javascript
 const event = {
-    parameters: {
-      woeid: '455861',
-    },
+    parameters: {},
     functionCode: `
      const axios = require('axios');
      
      return axios({
          method: 'get',
-         url: `https://api.hgbrasil.com/weather?woeid=${parameters.woeid}`,
+         url: 'https://api.hgbrasil.com/weather?woeid=455861',
      }).then(function (response) {
          return {
              ...response.data.results.forecast[2],
@@ -153,10 +157,12 @@ const event = {
      });
     `,
 };
-
 ```
-Expected value of *result* is: ``{ "data": "Oi" }`` 
 
 ## Powered by 
 
-Imagem Asksuite
+![Asksuite](http://images.asksuite.com/logo-github.png)
+
+## Contributors
+
+We don't have any contributors yet :(
