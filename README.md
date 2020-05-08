@@ -35,7 +35,7 @@ It's necessary to have configured the following environment variables:
 npm run deploy
 ```  
 
-Após realizar o deploy, você irá possuir as seguintes funções:
+After deploying, you will have the following functions:
 
 - lambda-code-snippet-executor_128
 - lambda-code-snippet-executor_256
