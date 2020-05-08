@@ -1,4 +1,4 @@
-service: asksuite-lambda-function
+service: ${env:SERVICE_NAME}
 plugins:
   - serverless-dotenv-plugin
 provider:

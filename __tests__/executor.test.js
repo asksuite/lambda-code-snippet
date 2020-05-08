@@ -33,26 +33,24 @@ describe('Executor test', () => {
   it('test function 2 - with axios', async () => {
     const result = await handler({
       parameters: {
-        url: 'https://web-directline.asksuite.com/health/check',
+        url: 'https://reqres.in/api/users?page=2',
       },
       functionCode: `
-                const axios = require('axios');
-                
-                return axios({
-                  method: 'get',
-                  url: parameters.url,
-                })
-                .then(function (response) {
-                  return response.data;
-                });
-            `,
+          const axios = require('axios');
+          
+          return axios({
+            method: 'GET',
+            url: parameters.url,
+          })
+          .then(function (response) {
+            return response.status;
+          });
+      `,
     });
 
     expect(result).toEqual(
       mountSuccessResult({
-        data: {
-          ok: 'ok',
-        },
+        data: 200,
       }),
     );
   });
@@ -129,11 +127,11 @@ describe('Executor test', () => {
   it('test function 6 - code error', async () => {
     const result = await handler({
       parameters: {
-        companyId: 'asksuite',
+        value: 'value-of-parameter',
       },
       functionCode: `
           return {
-              "companyId": parameters.companyId;
+              "companyId": parameters.value;
           };
       `,
     });
@@ -150,12 +148,12 @@ describe('Executor test', () => {
   it('test function 7 - custom error', async () => {
     const result = await handler({
       parameters: {
-        companyId: 'asksuite',
+        value: 'value-of-parameter',
       },
       functionCode: `
           return Promise.reject({
               "customError": {
-                  "companyId": parameters.companyId,
+                  "value": parameters.value,
                   "message": "Company don't exists",                    
               },
           });
@@ -166,7 +164,7 @@ describe('Executor test', () => {
       mountErrorResult({
         error: {
           customError: {
-            companyId: 'asksuite',
+            value: 'value-of-parameter',
             message: "Company don't exists",
           },
         },
