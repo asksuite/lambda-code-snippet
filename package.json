@@ -19,7 +19,8 @@
     "bluebird": "^3.7.2",
     "google-translate": "^3.0.0",
     "json-web-crawler": "^0.8.1",
-    "lodash": "^4.17.15"
+    "lodash": "^4.17.15",
+    "moment": "^2.27.0"
   },
   "devDependencies": {
     "dotenv": "^8.2.0",
