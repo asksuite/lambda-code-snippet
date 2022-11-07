@@ -3,7 +3,7 @@ plugins:
   - serverless-dotenv-plugin
 provider:
   name: aws
-  runtime: nodejs10.x
+  runtime: nodejs12.x
   environment:
     API_KEY_GOOGLE_TRANSLATE: ${env:API_KEY_GOOGLE_TRANSLATE}
 functions:

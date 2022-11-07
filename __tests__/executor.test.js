@@ -139,7 +139,7 @@ describe('Executor test', () => {
     expect(result).toEqual(
       mountErrorResult({
         error: {
-          exception: 'Unexpected token ;',
+          exception: `Unexpected token ';'`,
         },
       }),
     );
